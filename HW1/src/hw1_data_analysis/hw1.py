@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 bicycle_data = pd.read_csv("bicycle_data.csv")
 # Data type: Date - datetime
 # Data type: south of N 34th St total - integer
@@ -8,12 +9,10 @@ bicycle_data = pd.read_csv("bicycle_data.csv")
 bicycle_data.dtypes
 # Notice, the # of sidewalks is a float, when it should be integer
 
-# Drop NAs to remove 
-bicycle_data = bicycle_data.dropna()
 # Pull list of column names
 column_names = bicycle_data.columns.tolist()
-# Convert columns on interest from float to int
-bicycle_data[column_names[1:]] = bicycle_data[column_names[1:]].astype(int)
+# Convert columns 2-4 to integer type
+bicycle_data[column_names[1:]] = bicycle_data[column_names[1:]].astype("Int64")
 # Convert date column to panda datatime format for easy of pulling date/time
 bicycle_data["Date"] = pd.to_datetime(bicycle_data["Date"], format="%m/%d/%Y %H:%M:%S %p")
 
@@ -27,6 +26,8 @@ bicycle_data["Year"] = bicycle_data["Date"].dt.year
 # Subset the year 2016 into a new df
 bicycle_data_2016 = bicycle_data.filter(pd.col('Year') == 2016)
 
+# Found no missing data across the 2016 dataset?
+bicycle_data[bicycle_data.isna().all(axis=1)]
+
 if __name__ == "__main__":
-    print(bicycle_data_2016.head())
-    
+    print(bicycle_data[bicycle_data.isna().all(axis=1)])
