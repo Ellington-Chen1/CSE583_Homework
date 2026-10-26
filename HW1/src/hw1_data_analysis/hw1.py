@@ -24,7 +24,9 @@ bicycle_data["Military_Hour"] = bicycle_data["Date"].dt.hour
 # Pull year from date
 bicycle_data["Year"] = bicycle_data["Date"].dt.year
 
+# Subset the year 2016 into a new df
+bicycle_data_2016 = bicycle_data.filter(pd.col('Year') == 2016)
 
 if __name__ == "__main__":
-    print(bicycle_data.head())
+    print(bicycle_data_2016.head())
     
