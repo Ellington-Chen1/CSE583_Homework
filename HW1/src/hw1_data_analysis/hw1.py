@@ -19,7 +19,11 @@ bicycle_data["Date"] = pd.to_datetime(bicycle_data["Date"], format="%m/%d/%Y %H:
 
 # Add total column (already exists???) by summing columns 3 and 4
 bicycle_data["Total"] = bicycle_data[column_names[2:]].sum(axis = 1)
+# Pull hour from the date in military format
 bicycle_data["Military_Hour"] = bicycle_data["Date"].dt.hour
+# Pull year from date
+bicycle_data["Year"] = bicycle_data["Date"].dt.year
+
 
 if __name__ == "__main__":
     print(bicycle_data.head())
