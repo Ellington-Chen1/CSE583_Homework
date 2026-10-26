@@ -12,3 +12,5 @@ where AI identified I needed to convert to "Int64". After I finished
 writing my code, I also asked AI to help me identify errors in my work, 
 that hadn't seemed to affect the codes functionality. Some errors included 
 using the notation %H instead of %I for AM/PM-based variable notation.
+Note: All comments in the code were explicitly written by me and to 
+showcase my understanding of the functions of each line of code.
