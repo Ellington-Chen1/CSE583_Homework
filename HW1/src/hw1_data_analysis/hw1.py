@@ -15,11 +15,12 @@ column_names = bicycle_data.columns.tolist()
 # Convert columns on interest from float to int
 bicycle_data[column_names[1:]] = bicycle_data[column_names[1:]].astype(int)
 # Convert date column to panda datatime format for easy of pulling date/time
-bicycle_data["Date"] = pd.to_datetime(bicycle_data["Date"])
+bicycle_data["Date"] = pd.to_datetime(bicycle_data["Date"], format="%m/%d/%Y %H:%M:%S %p")
 
 # Add total column (already exists???) by summing columns 3 and 4
 bicycle_data["Total"] = bicycle_data[column_names[2:]].sum(axis = 1)
+bicycle_data["Military_Hour"] = bicycle_data["Date"].dt.hour
 
 if __name__ == "__main__":
-    print(bicycle_data["Date"].dt.hour)
+    print(bicycle_data.head())
     
