@@ -35,11 +35,13 @@ bicycle_hour_totals = bicycle_data_2016.groupby('Military_Hour')['Total'].sum().
 bicycle_hour_totals.plot.bar(x = 'Military_Hour', y = 'Total', legend = False)
 plt.xlabel("Hour")
 plt.ylabel("Totals")
-plt.show()
+plt.title("Total Number of Cyclists Crossing N 34th By Hour of the Day in 2016")
+# Save plot
+plt.savefig("counts_by_hour.png", dpi=300, bbox_inches="tight")
 
 
-if __name__ == "__main__":
-    bicycle_hour_totals.plot.bar(x = 'Military_Hour', y = 'Total', legend = False)
-    plt.xlabel("Hour")
-    plt.ylabel("Totals")
-    plt.show()
+# if __name__ == "__main__":
+#     bicycle_hour_totals.plot.bar(x = 'Military_Hour', y = 'Total', legend = False)
+#     plt.xlabel("Hour")
+#     plt.ylabel("Totals")
+#     plt.show()
