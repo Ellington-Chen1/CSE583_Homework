@@ -7,7 +7,7 @@ bicycle_data = pd.read_csv("bicycle_data.csv")
 # Data type: south of N 34th St Cyclist West - integer
 # Data type: south of N 34th St Cyclist East - integer
 
-bicycle_data.dtypes
+print(bicycle_data.dtypes)
 # Notice, the # of cyclists is a float, when it should be integer
 
 # Pull list of column names
@@ -28,20 +28,17 @@ bicycle_data["Year"] = bicycle_data["Date"].dt.year
 bicycle_data_2016 = bicycle_data[bicycle_data["Year"] == 2016]
 
 # Found no missing data across the 2016 dataset?
-bicycle_data_2016[bicycle_data_2016.isna().all(axis=1)]
+print(bicycle_data_2016[bicycle_data_2016.isna().all(axis=1)])
 
 # Create dataframe with grouped sums
 bicycle_hour_totals = bicycle_data_2016.groupby('Military_Hour')['Total'].sum().reset_index()
 bicycle_hour_totals.plot.bar(x = 'Military_Hour', y = 'Total', legend = False)
-plt.xlabel("Hour")
-plt.ylabel("Totals")
+plt.xlabel("Hour of the Day")
+plt.ylabel("Total Combined Daily Counts")
 plt.title("Total Number of Cyclists Crossing N 34th By Hour of the Day in 2016")
 # Save plot
 plt.savefig("counts_by_hour.png", dpi=300, bbox_inches="tight")
 
+print(bicycle_data_2016.groupby('Military_Hour')['Total'].mean().idxmax())
 
-# if __name__ == "__main__":
-#     bicycle_hour_totals.plot.bar(x = 'Military_Hour', y = 'Total', legend = False)
-#     plt.xlabel("Hour")
-#     plt.ylabel("Totals")
-#     plt.show()
+# The busiest hour of the day in 2016 was 5 pm (17:00), with an average of 399 cyclists per day 
